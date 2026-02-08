@@ -14,10 +14,9 @@ if img is None:
     print(f"Erro: Não foi possível encontrar a imagem")
 else:
     # Chama a função.
-    h_k, alpha, gamma, p_k, beta, q_k = initial_parameters(img)
+    h_k, alpha, gamma, p_k, beta, q_k, tau, a_k, b_k, mu_a, mu_b, sigma_a, sigma_b = initial_parameters(img)
     
     # Testes    
-    print("--- PLMHE: Initial Steps Success ---")
-    print(f"Alpha: {alpha:.4f}")
-    print(f"Gamma: {gamma:.4f}")
-    print(f"Max Qk (Log compressed): {np.max(q_k):.2f}")
+    print("--- Step 9: Sub-histogram Means ---")
+    print(f"Mean Amplitude Lower (mu_a): {mu_a:.4f}")
+    print(f"Mean Amplitude Upper (mu_b): {mu_b:.4f}")

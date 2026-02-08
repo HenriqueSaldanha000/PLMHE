@@ -29,8 +29,38 @@ def initial_parameters(image):
     # Definido como 0.5 no começo mas é necessario testar outros para achar o ideal.
     beta = 0.5
     
-    # PASSO 6: Log Transformation (Qk)
-    # Comprime os valores de Pk
+    # PASSO 6: Comprime dos valores de Pk (Qk)
     q_k = beta * np.log1p(p_k)
     
-    return h_k, alpha, gamma, p_k, beta, q_k
+    # PASSO 7: Descobre onde dividir o histograma.
+    tau = int(L * alpha)
+
+    # STEP 8: Divide o histograma em 2 subconjuntos baseados no valor de tau
+    # Ak: do início até tau
+    a_k = q_k[:tau + 1]
+    
+    # Bk: de tau+1 até o final
+    b_k = q_k[tau + 1:]
+
+    # STEP 9: Calcula a media das amplitudes dos 2 dub-histogramas
+    # mu_A: média das amplitudes do primeiro sub-histograma
+    mu_a = np.mean(a_k)
+    
+    # mu_B: média das amplitudes do segundo sub-histograma
+    mu_b = np.mean(b_k)
+
+    # STEP 10: Calcula o desvio padrão de cada sub-histograma
+    # sigma_A: desvio padrão do primeiro sub-histograma
+    sigma_a = np.std(a_k)
+    
+    # sigma_B: desvio padrão do segundo sub-histograma
+    sigma_b = np.std(b_k)
+
+    # STEP 11: Soma os sub-histogramas ao seus desvios padrões
+    # Dk = Ak + sigma_A
+    d_k = a_k + sigma_a
+    
+    # Ek = Bk + sigma_B
+    e_k = b_k + sigma_b
+    
+    return h_k, alpha, gamma, p_k, beta, q_k, tau, a_k, b_k, mu_a, mu_b, sigma_a, sigma_b, d_k, e_k

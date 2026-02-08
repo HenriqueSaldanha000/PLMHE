@@ -1,16 +1,15 @@
-# Python (Arquivos temporários de execução)
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
-# VS Code (Configurações do seu editor)
+# VS Code
 .vscode/
 
-# Data (Imagens e Datasets)
-# É importante ignorar a pasta data para não subir imagens pesadas para o GitHub
+# Data
 data/
 
-# Ambientes Virtuais (Caso você crie um venv)
+# Ambientes Virtuais
 venv/
 .venv/
 env/
